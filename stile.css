@@ -1,5 +1,15 @@
-.title{
-    padding-top: 2%;
-    text-align: center;
-    font-family: 'Pacifico', cursive;
+*{
+  padding:0px;
+  margin:0px;
+}
+
+#tabellone{
+  zoom: 1.8;
+}
+
+td{
+
+  border: 2px solid rgb(126, 6, 6);
+  border-radius: 35px;
+  background-color: rgb(255, 255, 255);
 }
