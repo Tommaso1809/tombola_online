@@ -5,6 +5,11 @@
 
 #tabellone{
   zoom: 1.8;
+  background-color: #E6DFDF;
+  width: fit-content;
+  padding: 10px 5px;
+  margin: 10px;
+  border-radius: 15px;
 }
 
 td{
@@ -34,7 +39,7 @@ button:hover{
  #ultimo{
 
     font-size: 20px;
-    font-family: 'Rubik', sans-serif;
+    font-family: 'Lato';
  }
 
  ul{

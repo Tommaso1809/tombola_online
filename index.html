@@ -7,42 +7,31 @@
         <link rel="stylesheet" href="stile.css">
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Rubik&display=swap" rel="stylesheet">
-
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Sevillana&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Lato&family=Sevillana&display=swap" rel="stylesheet">
 
     </head>
 
     <body onload="intitTable();">
 
         <nav>
-            <ul>
-               <center>
+
+            <center>
+                <ul>
                     <strong><li>Tombola Napoletana</li></strong>
-                </center
-
-            </ul>
-
+                </ul>
+            </center>    
 
         </nav>
 
-        <br><br><br>
+        <br><br>
 
         <center>
             <div  id="tabellone"></div>
-            <button id="sorteggio" onclick="ChangeColor();">Sorteggia</button>
-
             <br><br>
-            <div id="ultimo">
-                
-            </div>
-
-            <div id="smorfie">
-
-            </div>
-
+            <button id="sorteggio" onclick="ChangeColor();">Estrai il numero</button>
+            <br><br>
+            <div id="ultimo"></div>
+            <div id="smorfia"></div>
         </center>
 
        
@@ -64,7 +53,13 @@
             output += "<tr>";
             for (j=1; j<=colonne; j++) {
                 var n = i*10+j;
-                output += "<td id='"+ n +"'>"+ n +"</td>";
+
+                if(n<10){
+                    output += "<td id='"+ n +"'>0"+ n +"</td>";
+                }else{
+                    output += "<td id='"+ n +"'>"+ n +"</td>";
+                }
+               
             }
             output += "</tr>";
         }
@@ -74,43 +69,50 @@
         document.f1.col_text.value = txt_col;
     }
 
-        function ChangeColor(){
-
-            var numeriUsciti=[];
-            var num;
-            
-            do {
-                 num = Math.floor(Math.random() * 100) + 1;
-
-            }while(numeriUsciti.includes(num));
-
-            numeriUsciti.push(num);
-
-            var bg_ini = "rgb(255, 255, 255)";
-            var bg_sel = "rgb(255, 238, 0)";
-
-            var e = document.getElementById(num);
-            if (e.style.backgroundColor != bg_sel) {
-                e.style.backgroundColor = bg_sel;
-
-                document.getElementById("ultimo").innerHTML="Ultimo Uscito "+num;
-
-                switch(num){
-                    case 1:
-                        document.getElementById("smorfie").innerHTML="l'Italia";
-
-                    break;
-                }
-                
-
-            }    
-       
-         }
-
-         
-
-
     
+
+    function ChangeColor(){
+
+        var bg_ini = "rgb(255, 255, 255)";
+        var bg_sel = "rgb(255, 238, 0)";
+
+        var num;
+        var numeriUsciti=[];
+
+        do{
+
+            num=Math.floor(Math.random() * (90 - 1 + 1)) + 1;
+        }while(numeriUsciti.includes(num));
+
+        numeriUsciti.push(num);
+        queryDatabase(num);
+
+        var e = document.getElementById(num);
+        if (e.style.backgroundColor != bg_sel) {
+            e.style.backgroundColor = bg_sel;
+
+            document.getElementById("ultimo").innerHTML="Ultimo Uscito "+num;
+        }
+       
+    }
+
+    function queryDatabase(id) {
+        // Creazione di un oggetto XMLHttpRequest
+        var xhr = new XMLHttpRequest();
+
+        // Definizione della richiesta (metodo, URL con parametro, modo asincrono)
+        xhr.open("GET", "query.php?id=" + id, true);
+
+        // Gestione della risposta
+        xhr.onreadystatechange = function() {
+            if (xhr.readyState == 4 && xhr.status == 200) {
+            // Output dei risultati nella pagina
+            document.getElementById("smorfia").innerHTML = xhr.responseText;
+            }
+        };
+
+        xhr.send();
+    }
 
 
 </script>
