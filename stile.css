@@ -10,6 +10,46 @@
 td{
 
   border: 2px solid rgb(126, 6, 6);
-  border-radius: 35px;
+  border-radius: 30px;
   background-color: rgb(255, 255, 255);
+  font-family: 'Rubik', sans-serif;
+  font-size: 18px;
+  align-items: center;
 }
+
+#sorteggio{
+
+    background-color: rgb(16, 58, 223);
+    border-radius: 15px;
+    color:white;
+    border:0px solid black;
+    padding: 8px;
+}
+
+button:hover{
+
+  cursor: pointer;
+}
+
+ #ultimo{
+
+    font-size: 20px;
+    font-family: 'Rubik', sans-serif;
+ }
+
+ ul{
+
+    margin: 0px;
+ }
+
+ li{
+  display: inline;
+  font-family: 'Sevillana', cursive;
+  font-size: 27px;
+  text-align:  center;
+ }
+
+ nav{
+  background-color: chocolate;
+  height: 40px;
+ }

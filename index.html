@@ -5,14 +5,43 @@
     <head>
         <title>Tombola Napoletana</title>
         <link rel="stylesheet" href="stile.css">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Rubik&display=swap" rel="stylesheet">
+
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Sevillana&display=swap" rel="stylesheet">
 
     </head>
 
     <body onload="intitTable();">
 
+        <nav>
+            <ul>
+               <center>
+                    <strong><li>Tombola Napoletana</li></strong>
+                </center
+
+            </ul>
+
+
+        </nav>
+
+        <br><br><br>
 
         <center>
             <div  id="tabellone"></div>
+            <button id="sorteggio" onclick="ChangeColor();">Sorteggia</button>
+
+            <br><br>
+            <div id="ultimo">
+                
+            </div>
+
+            <div id="smorfie">
+
+            </div>
 
         </center>
 
@@ -35,7 +64,7 @@
             output += "<tr>";
             for (j=1; j<=colonne; j++) {
                 var n = i*10+j;
-                output += "<td id='"+ n +"' OnClick='ChangeColor(\""+n+"\")'>"+ n +"</td>";
+                output += "<td id='"+ n +"'>"+ n +"</td>";
             }
             output += "</tr>";
         }
@@ -45,17 +74,43 @@
         document.f1.col_text.value = txt_col;
     }
 
-    function ChangeColor(id){
+        function ChangeColor(){
 
-        var bg_ini = "rgb(255, 255, 255)";
-        var bg_sel = "rgb(255, 238, 0)";
+            var numeriUsciti=[];
+            var num;
+            
+            do {
+                 num = Math.floor(Math.random() * 100) + 1;
 
-        var e = document.getElementById(id);
-        if (e.style.backgroundColor != bg_sel) {
-            e.style.backgroundColor = bg_sel;
-        }
+            }while(numeriUsciti.includes(num));
+
+            numeriUsciti.push(num);
+
+            var bg_ini = "rgb(255, 255, 255)";
+            var bg_sel = "rgb(255, 238, 0)";
+
+            var e = document.getElementById(num);
+            if (e.style.backgroundColor != bg_sel) {
+                e.style.backgroundColor = bg_sel;
+
+                document.getElementById("ultimo").innerHTML="Ultimo Uscito "+num;
+
+                switch(num){
+                    case 1:
+                        document.getElementById("smorfie").innerHTML="l'Italia";
+
+                    break;
+                }
+                
+
+            }    
        
-    }
+         }
+
+         
+
+
+    
 
 
 </script>
